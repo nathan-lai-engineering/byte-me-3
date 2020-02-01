@@ -11,6 +11,9 @@ koalaImg.src = "js/assets/koala1.png";
 var basketImg = new Image();
 basketImg.src = "js/assets/basket.png";
 
+var heart1 = new Image();
+heart1.src = "js/assets/heart.png";
+
 var leftPressed = false;
 var rightPressed = false;
 
