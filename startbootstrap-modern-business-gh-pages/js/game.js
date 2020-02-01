@@ -22,7 +22,7 @@ var basket = {
   width: basketImg.width,
   x: gameCanvas.width / 2,
   y: gameCanvas.height - 100,
-  dx: 8
+  dx: 6
 };
 
 var koalas = [];
@@ -69,10 +69,10 @@ function drawBasket() {
   basket.height = basketImg.height;
   gameCtx.drawImage(basketImg, basket.x, basket.y);
   console.log(basket.x + " " + basket.y);
-  if (rightPressed) {
+  if (rightPressed && basket.x + basketImg.width < gameCanvas.width) {
     basket.x += basket.dx;
   }
-  if (leftPressed) {
+  if (leftPressed && basket.x > 0) {
     basket.x -= basket.dx;
   }
 }
