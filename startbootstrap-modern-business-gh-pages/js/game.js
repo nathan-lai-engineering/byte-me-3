@@ -9,7 +9,7 @@ var koalaImg = new Image();
 koalaImg.src = "js/assets/koala1.png";
 
 var basketImg = new Image();
-basketImg.src = "js/assets/koala2.png";
+basketImg.src = "js/assets/basket.png";
 
 var leftPressed = false;
 var rightPressed = false;
