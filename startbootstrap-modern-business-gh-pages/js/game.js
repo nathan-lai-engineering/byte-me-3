@@ -1,4 +1,3 @@
-  
 const CANVAS_NAME = "canvas";
 
 console.log("yeah game is loaded");
