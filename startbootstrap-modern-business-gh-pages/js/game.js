@@ -21,7 +21,7 @@ var basket = {
   height: basketImg.height,
   width: basketImg.width,
   x: gameCanvas.width / 2,
-  y: gameCanvas.height - basketImg.height,
+  y: gameCanvas.height - 100,
   dx: 6
 };
 
@@ -57,7 +57,9 @@ function drawKoala() {
  * Draws basket and moves it with key presses
  */
 function drawBasket() {
+  basket.height = basketImg.height;
   gameCtx.drawImage(basketImg, basket.x, basket.y);
+  console.log(basket.x + " " + basket.y);
   if (rightPressed) {
     basket.x += basket.dx;
   }
@@ -85,14 +87,14 @@ document.addEventListener("keyup", keyUpHandler, false);
 function keyDownHandler(e) {
   if (e.key == "Right" || e.key == "ArrowRight") {
     rightPressed = true;
-  } else if (e.key == "Left" || e.key == "ArrowRight") {
+  } else if (e.key == "Left" || e.key == "ArrowLeft") {
     leftPressed = true;
   }
 }
 function keyUpHandler(e) {
   if (e.key == "Right" || e.key == "ArrowRight") {
     rightPressed = false;
-  } else if (e.key == "Left" || e.key == "ArrowRight") {
+  } else if (e.key == "Left" || e.key == "ArrowLeft") {
     leftPressed = false;
   }
 }
