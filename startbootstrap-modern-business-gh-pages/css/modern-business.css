@@ -4,12 +4,12 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
 * font {
-    font-family: 'Tomorrow', sans-serif;
+  font-family: "Tomorrow", sans-serif;
 }
 
 body {
   padding-top: 56px;
-  font-family: 'Tomorrow', sans-serif;
+  font-family: "Tomorrow", sans-serif;
 }
 
 .carousel-item {
@@ -20,13 +20,12 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: 'Tomorrow', sans-serif;
+  font-family: "Tomorrow", sans-serif;
 }
 
 .portfolio-item {
   margin-bottom: 30px;
-  font-family: 'Tomorrow', sans-serif;
-
+  font-family: "Tomorrow", sans-serif;
 }
 
 #canvas {
@@ -35,7 +34,6 @@ body {
   justify-content: center;
   margin: 0 auto;
   background-image: url("photo/forestimage.png");
-
 }
 
 .container1 {
@@ -44,20 +42,17 @@ body {
 
 footer {
   position: fixed;
-   right: 0;
-   bottom: 0;
-   left: 0;
-   background-image: url("photo/footerpic.jpg")
-
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("photo/footerpic.jpg");
 }
 
 /* nav-item, nav-link {
     font-family: 'Tomorrow', sans-serif;
 } */
 
-.col-lg-4 mb-4{
+.col-lg-4 mb-4 {
   display: flex;
   flex-direction: f;
-
-
 }

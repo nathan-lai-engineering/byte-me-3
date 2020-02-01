@@ -26,8 +26,6 @@ var lives = 3;
 var koalas = [];
 
 var basket = {
-  height: basketImg.height,
-  width: basketImg.width,
   x: gameCanvas.width / 5,
   y: gameCanvas.height - 100,
   dx: 6
@@ -48,7 +46,7 @@ function createBaseKoala() {
     x: Math.random() * (gameCanvas.width - koalaImg.width),
     y: -koalaImg.height,
     dy: Math.random() * 3 + 1, //randomizing speed
-    version: Math.random()
+    version: Math.random() //randomizing the texture
   };
 }
 
@@ -60,7 +58,7 @@ function drawKoala() {
     if (koalas[i].version > 0.5) {
       gameCtx.drawImage(koalaImg, koalas[i].x, koalas[i].y);
     } else {
-      gameCtx.drawImage(koalaImg2, koalas[i].x, koalas[i].y);
+      gameCtx.drawImage(koalaImg2, koalas[i].x, koalas[i].y); //!!!! line 49 + 58-62 for randomized textures !!!!!
     }
 
     if (
@@ -97,16 +95,14 @@ function drawBasket() {
  * Draws hearts
  */
 function drawHearts() {
-  var lastX = hearts.x;
   for (i = 0; i < lives; i++) {
     gameCtx.drawImage(
       heart1,
-      lastX + i * hearts.dX,
+      hearts.x + 2 * i * hearts.dX,
       hearts.y,
       heart1.width / 60,
       heart1.height / 60
     );
-    lastX = lastX + hearts.dX;
   }
 }
 
@@ -135,7 +131,7 @@ function draw() {
 }
 
 /**
- * Increases the spawning rate as you play
+ * !!!!! Increases the spawning rate as you play !!!!!
  */
 function increaseDifficulty() {
   if (2000 - 15 * koalaSaved > 500) {
@@ -172,7 +168,7 @@ function gameOver() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
   gameCtx.fillStyle = "#000000";
   gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
-  window.open(window.location.href.replace("game.html", "donation.html"));
+  window.open(window.location.href.replace("game.html", "donation.html")); //!!!! opens the donation change in a new tab !!!!
 }
 var drawInterval = setInterval(draw, 10);
 var koalaInterval = setInterval(createBaseKoala, 2000);
