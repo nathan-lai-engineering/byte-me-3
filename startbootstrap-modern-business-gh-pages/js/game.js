@@ -172,6 +172,7 @@ function gameOver() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
   gameCtx.fillStyle = "#000000";
   gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+  window.open(window.location.href.replace("game.html", "donation.html"));
 }
 var drawInterval = setInterval(draw, 10);
 var koalaInterval = setInterval(createBaseKoala, 2000);
