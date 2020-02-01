@@ -125,11 +125,12 @@ function drawScore() {
  */
 function draw() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-  if (lives > 0) {
-    drawKoala();
-    drawBasket();
-    drawScore();
-    drawHearts();
+  drawKoala();
+  drawBasket();
+  drawScore();
+  drawHearts();
+  if (lives <= 0) {
+    gameOver();
   }
 }
 
@@ -165,5 +166,12 @@ function keyUpHandler(e) {
   }
 }
 
+function gameOver() {
+  clearInterval(drawInterval);
+  clearInterval(koalaInterval);
+  gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+  gameCtx.fillStyle = "#000000";
+  gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+}
 var drawInterval = setInterval(draw, 10);
 var koalaInterval = setInterval(createBaseKoala, 2000);
