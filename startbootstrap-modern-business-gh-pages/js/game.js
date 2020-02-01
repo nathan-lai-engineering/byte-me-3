@@ -73,8 +73,6 @@ var basket = {
 };
 
 var hearts = {
-  height: heart1.height,
-  width: heart1.width,
   x: gameCanvas.width / 5,
   y: gameCanvas.height - 100
 };
