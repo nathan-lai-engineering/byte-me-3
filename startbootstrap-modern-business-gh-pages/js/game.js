@@ -8,6 +8,9 @@ var gameCtx = gameCanvas.getContext("2d");
 var koalaImg = new Image();
 koalaImg.src = "js/assets/koala1.png";
 
+var koalaImg2 = new Image();
+koalaImg2.src = "js/assets/koala2.png";
+
 var basketImg = new Image();
 basketImg.src = "js/assets/basket.png";
 
@@ -44,7 +47,8 @@ function createBaseKoala() {
   koalas[koalas.length] = {
     x: Math.random() * (gameCanvas.width - koalaImg.width),
     y: -koalaImg.height,
-    dy: Math.random() * 3 + 1 //randomizing speed
+    dy: Math.random() * 3 + 1, //randomizing speed
+    version: Math.random()
   };
 }
 
@@ -53,7 +57,12 @@ function createBaseKoala() {
  */
 function drawKoala() {
   for (let i = 0; i < koalas.length; i++) {
-    gameCtx.drawImage(koalaImg, koalas[i].x, koalas[i].y);
+    if (koalas[i].version > 0.5) {
+      gameCtx.drawImage(koalaImg, koalas[i].x, koalas[i].y);
+    } else {
+      gameCtx.drawImage(koalaImg2, koalas[i].x, koalas[i].y);
+    }
+
     if (
       koalas[i].y > basket.y - koalaImg.height &&
       ((koalas[i].x > basket.x && koalas[i].x < basket.x + basketImg.width) ||
@@ -62,7 +71,6 @@ function drawKoala() {
     ) {
       koalas.splice(i, 1);
       koalaSaved++;
-      console.log(koalaSaved);
     } else if (koalas[i].y + koalas[i].dy > gameCanvas.height) {
       koalas.splice(i, 1); //removes koala once it reaches the ground
       lives--;
@@ -77,7 +85,6 @@ function drawKoala() {
  */
 function drawBasket() {
   gameCtx.drawImage(basketImg, basket.x, basket.y);
-  console.log(basket.x + " " + basket.y);
   if (rightPressed && basket.x + basketImg.width < gameCanvas.width) {
     basket.x += basket.dx;
   }
@@ -101,7 +108,6 @@ function drawHearts() {
     );
     lastX = lastX + hearts.dX;
   }
-  console.log(hearts.x + " and " + hearts.y);
 }
 
 /**
