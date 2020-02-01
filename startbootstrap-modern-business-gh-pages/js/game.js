@@ -97,7 +97,7 @@ function drawBasket() {
 function drawHearts() {
   hearts.height = heart1.height;
   gameCtx.drawImage(heart1, hearts.x, hearts.y);
-  console.log("eahehae");
+  console.log(hearts.x + " and " + hearts.y);
 
 }
 
@@ -111,7 +111,6 @@ function draw() {
   drawBasket();
 }
 
-draw();
 
 //Adding event listeners for keys
 document.addEventListener("keydown", keyDownHandler, false);
