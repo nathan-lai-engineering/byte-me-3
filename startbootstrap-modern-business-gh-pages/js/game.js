@@ -2,11 +2,14 @@ const CANVAS_NAME = "canvas";
 
 console.log("yeah game is loaded");
 
+WebFontConfig = {
+		google: {
+			families: ['Roboto:300,400,700']
+		}
+	};
+
 var gameCanvas = document.getElementById(CANVAS_NAME);
 var gameCtx = gameCanvas.getContext("2d");
-
-gameCtx.font = "30px Arial";
-gameCtx.fillText("Koalas Saved: ", canvas.width - 10, canvas.height - 10);
 
 var koalaImg = new Image();
 koalaImg.src = "js/assets/koala1.png";
@@ -75,7 +78,7 @@ var basket = {
 var hearts = {
   x: 10,
   y: 10,
-  dX:5
+  dX: 25
 };
 
 /**
@@ -95,9 +98,12 @@ function drawBasket() {
 
 function drawHearts() {
   hearts.height = heart1.height;
-  gameCtx.drawImage(heart1, hearts.x, hearts.y, heart1.width/60, heart1.height/60);
+  var lastX = hearts.x;
+  for(i=0; i < lives; i++){
+    gameCtx.drawImage(heart1, lastX + (i*hearts.dX), hearts.y, heart1.width/60, heart1.height/60);
+    lastX = lastX + hearts.dX;
+  }
   console.log(hearts.x + " and " + hearts.y);
-
 }
 
 /**
@@ -105,6 +111,9 @@ function drawHearts() {
  */
 function draw() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+  gameCtx.font = "30px Roboto";
+  gameCtx.fillStyle = "white";
+  gameCtx.fillText("Koalas Saved: ", gameCanvas.width-250, 35);
   drawHearts();
   drawKoala();
   drawBasket();
