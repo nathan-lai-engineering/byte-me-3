@@ -9,29 +9,38 @@ var koalaImg = new Image();
 koalaImg.src = "js/assets/koala1.png";
 
 var basketImg = new Image();
-basketImg.src = "js/assets/koala2.png";
+basketImg.src = "js/assets/basket.png";
+
+var heart1 = new Image();
+heart1.src = "js/assets/heart.png";
 
 var leftPressed = false;
 var rightPressed = false;
 
-var seconds = 0;
 var koalaSaved = 0;
+var lives = 3;
+
+var koalas = [];
 
 var basket = {
   height: basketImg.height,
   width: basketImg.width,
-  x: gameCanvas.width / 2,
+  x: gameCanvas.width / 5,
   y: gameCanvas.height - 100,
   dx: 6
 };
 
-var koalas = [];
+var hearts = {
+  x: 10,
+  y: 10,
+  dX: 25
+};
 
 /**
  * Creates koalas at random places
  */
 function createBaseKoala() {
-  seconds++;
+  increaseDifficulty();
   koalas[koalas.length] = {
     x: Math.random() * (gameCanvas.width - koalaImg.width),
     y: -koalaImg.height,
@@ -56,6 +65,7 @@ function drawKoala() {
       console.log(koalaSaved);
     } else if (koalas[i].y + koalas[i].dy > gameCanvas.height) {
       koalas.splice(i, 1); //removes koala once it reaches the ground
+      lives--;
     } else {
       koalas[i].y += koalas[i].dy;
     }
@@ -66,7 +76,6 @@ function drawKoala() {
  * Draws basket and moves it with key presses
  */
 function drawBasket() {
-  basket.height = basketImg.height;
   gameCtx.drawImage(basketImg, basket.x, basket.y);
   console.log(basket.x + " " + basket.y);
   if (rightPressed && basket.x + basketImg.width < gameCanvas.width) {
@@ -78,12 +87,54 @@ function drawBasket() {
 }
 
 /**
+ * Draws hearts
+ */
+function drawHearts() {
+  var lastX = hearts.x;
+  for (i = 0; i < lives; i++) {
+    gameCtx.drawImage(
+      heart1,
+      lastX + i * hearts.dX,
+      hearts.y,
+      heart1.width / 60,
+      heart1.height / 60
+    );
+    lastX = lastX + hearts.dX;
+  }
+  console.log(hearts.x + " and " + hearts.y);
+}
+
+/**
+ * Draws score text
+ */
+function drawScore() {
+  gameCtx.font = "20px Tomorrow";
+  gameCtx.fillStyle = "white";
+  var scoreMessage = "Koalas Saved: " + String(koalaSaved);
+  gameCtx.fillText(scoreMessage, gameCanvas.width - 300, 35);
+}
+
+/**
  * Main draw function, draws all the elements in the canvas
  */
 function draw() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-  drawKoala();
-  drawBasket();
+  if (lives > 0) {
+    drawKoala();
+    drawBasket();
+    drawScore();
+    drawHearts();
+  }
+}
+
+/**
+ * Increases the spawning rate as you play
+ */
+function increaseDifficulty() {
+  if (2000 - 15 * koalaSaved > 500) {
+    clearInterval(koalaInterval);
+    koalaInterval = setInterval(createBaseKoala, 2000 - 15 * koalaSaved);
+  }
 }
 
 //Adding event listeners for keys
@@ -109,4 +160,4 @@ function keyUpHandler(e) {
 }
 
 var drawInterval = setInterval(draw, 10);
-var koalaInterval = setInterval(createBaseKoala, 1000);
+var koalaInterval = setInterval(createBaseKoala, 2000);
