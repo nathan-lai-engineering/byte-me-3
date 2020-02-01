@@ -2,12 +2,6 @@ const CANVAS_NAME = "canvas";
 
 console.log("yeah game is loaded");
 
-WebFontConfig = {
-		google: {
-			families: ['Roboto:300,400,700']
-		}
-	};
-
 var gameCanvas = document.getElementById(CANVAS_NAME);
 var gameCtx = gameCanvas.getContext("2d");
 
@@ -106,18 +100,24 @@ function drawHearts() {
   console.log(hearts.x + " and " + hearts.y);
 }
 
+function drawScore(){
+  gameCtx.font = "30px Arial";
+  gameCtx.fillStyle = "white";
+  gameCtx.fillText("Koalas Saved: ", gameCanvas.width-250, 35);
+}
+
 /**
  * Main draw function, draws all the elements in the canvas
  */
 function draw() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-  gameCtx.font = "30px Roboto";
-  gameCtx.fillStyle = "white";
-  gameCtx.fillText("Koalas Saved: ", gameCanvas.width-250, 35);
+
+  drawScore();
   drawHearts();
   drawKoala();
   drawBasket();
 }
+
 
 
 //Adding event listeners for keys
