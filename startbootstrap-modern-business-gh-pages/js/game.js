@@ -5,6 +5,9 @@ console.log("yeah game is loaded");
 var gameCanvas = document.getElementById(CANVAS_NAME);
 var gameCtx = gameCanvas.getContext("2d");
 
+gameCtx.font = "30px Arial";
+gameCtx.fillText("Koalas Saved: ", canvas.width - 10, canvas.height - 10);
+
 var koalaImg = new Image();
 koalaImg.src = "js/assets/koala1.png";
 
@@ -19,14 +22,9 @@ var rightPressed = false;
 
 var seconds = 0;
 var koalaSaved = 0;
+var lives=3;
 
-var basket = {
-  height: basketImg.height,
-  width: basketImg.width,
-  x: gameCanvas.width / 2,
-  y: gameCanvas.height - 100,
-  dx: 6
-};
+
 
 var koalas = [];
 
@@ -59,11 +57,27 @@ function drawKoala() {
       console.log(koalaSaved);
     } else if (koalas[i].y + koalas[i].dy > gameCanvas.height) {
       koalas.splice(i, 1); //removes koala once it reaches the ground
+      lives--;
     } else {
       koalas[i].y += koalas[i].dy;
     }
   }
 }
+
+var basket = {
+  height: basketImg.height,
+  width: basketImg.width,
+  x: gameCanvas.width / 5,
+  y: gameCanvas.height - 100,
+  dx: 6
+};
+
+var hearts = {
+  height: heart1.height,
+  width: heart1.width,
+  x: gameCanvas.width / 5,
+  y: gameCanvas.height - 100
+};
 
 /**
  * Draws basket and moves it with key presses
@@ -80,14 +94,24 @@ function drawBasket() {
   }
 }
 
+function drawHearts() {
+  hearts.height = heart1.height;
+  gameCtx.drawImage(heart1, hearts.x, hearts.y);
+  console.log("eahehae");
+
+}
+
 /**
  * Main draw function, draws all the elements in the canvas
  */
 function draw() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+  drawHearts();
   drawKoala();
   drawBasket();
 }
+
+draw();
 
 //Adding event listeners for keys
 document.addEventListener("keydown", keyDownHandler, false);
