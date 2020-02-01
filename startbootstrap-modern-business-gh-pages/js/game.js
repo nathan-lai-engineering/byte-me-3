@@ -9,13 +9,17 @@ var gameCtx = gameCanvas.getContext("2d");
 gameCtx.canvas.width  = window.innerWidth;
 gameCtx.canvas.height = window.innerHeight;
 
-var buttonX = gameCanvas.width / 10;
-var buttonY = gameCanvas.height / 10;
 var buttonW = 200;
 var buttonH = 100;
+var buttonX = (gameCanvas.width / 2) - (buttonW/2);
+var buttonY = ((gameCanvas.height / 2) - (buttonH/2)) + 80;
+
 
 var koalaImg = new Image();
 koalaImg.src = "js/assets/koala1.png";
+
+var resetImg = new Image();
+resetImg.src = "js/assets/reset.png";
 
 var basketImg = new Image();
 basketImg.src = "js/assets/basket.png";
@@ -133,17 +137,7 @@ function draw() {
 
 function drawDonationBtn(){
   // Render button
-  gameCtx.font = "20px Tomorrow";
-
-
-  gameCtx.fillStyle = "white";
-  gameCtx.fillRect(buttonX, buttonY, buttonW, buttonH);
-
-
-  var msg = "Get extra life";
-  gameCtx.fillStyle = 'black';
-  gameCtx.fillText(msg, buttonX, buttonY);
-
+  gameCtx.drawImage(resetImg, buttonX, buttonY, buttonW, buttonH);
 
   // Add event listener to canvas element
   gameCanvas.addEventListener('click', function(event) {
@@ -156,8 +150,8 @@ function drawDonationBtn(){
       event.y < buttonY + buttonH
     ) {
       // Executes if button was clicked!
-      alert('Button was clicked!');
       console.log("clicked");
+      window.open("https://shorturl.at/hnxO6", '_blank');
     }
   });
 }
