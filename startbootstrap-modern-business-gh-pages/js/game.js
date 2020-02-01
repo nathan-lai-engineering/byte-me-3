@@ -47,8 +47,9 @@ function drawKoala() {
     gameCtx.drawImage(koalaImg, koalas[i].x, koalas[i].y);
     if (
       koalas[i].y > basket.y - koalaImg.height &&
-      koalas[i].x < basket.x + basket.width &&
-      koalas[i].x > basket.x - koalaImg.width
+      ((koalas[i].x > basket.x && koalas[i].x < basket.x + basketImg.width) ||
+        (koalas[i].x + koalaImg.width > basket.x &&
+          koalas[i].x + koalaImg.width < basket.x + basketImg.width))
     ) {
       koalas.splice(i, 1);
       koalaSaved++;
