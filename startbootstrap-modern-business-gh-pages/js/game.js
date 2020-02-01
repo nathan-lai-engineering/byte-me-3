@@ -22,7 +22,7 @@ var basket = {
   width: basketImg.width,
   x: gameCanvas.width / 2,
   y: gameCanvas.height - 100,
-  dx: 6
+  dx: 8
 };
 
 var koalas = [];
@@ -35,7 +35,7 @@ function createBaseKoala() {
   koalas[koalas.length] = {
     x: Math.random() * (gameCanvas.width - koalaImg.width),
     y: -koalaImg.height,
-    dy: Math.random() * 4 + 1 //randomizing speed
+    dy: Math.random() * 3 + 1 //randomizing speed
   };
 }
 
@@ -45,7 +45,15 @@ function createBaseKoala() {
 function drawKoala() {
   for (let i = 0; i < koalas.length; i++) {
     gameCtx.drawImage(koalaImg, koalas[i].x, koalas[i].y);
-    if (koalas[i].y + koalas[i].dy > gameCanvas.height) {
+    if (
+      koalas[i].y > basket.y - koalaImg.height &&
+      koalas[i].x < basket.x + basket.width &&
+      koalas[i].x > basket.x - koalaImg.width
+    ) {
+      koalas.splice(i, 1);
+      koalaSaved++;
+      console.log(koalaSaved);
+    } else if (koalas[i].y + koalas[i].dy > gameCanvas.height) {
       koalas.splice(i, 1); //removes koala once it reaches the ground
     } else {
       koalas[i].y += koalas[i].dy;
