@@ -73,8 +73,9 @@ var basket = {
 };
 
 var hearts = {
-  x: gameCanvas.width / 5,
-  y: gameCanvas.height - 100
+  x: 10,
+  y: 10,
+  dX:5
 };
 
 /**
@@ -94,7 +95,7 @@ function drawBasket() {
 
 function drawHearts() {
   hearts.height = heart1.height;
-  gameCtx.drawImage(heart1, hearts.x, hearts.y);
+  gameCtx.drawImage(heart1, hearts.x, hearts.y, heart1.width/60, heart1.height/60);
   console.log(hearts.x + " and " + hearts.y);
 
 }
