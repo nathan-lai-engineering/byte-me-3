@@ -3,12 +3,14 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
+ @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
 * font {
     font-family: 'Tomorrow', sans-serif;
 }
 
 body {
-  /* padding-top: 56px; */
+  padding-top: 50px;
   font-family: 'Tomorrow', sans-serif;
 }
 
@@ -29,11 +31,16 @@ body {
 
 }
 
+
 #canvas {
-  border: 1px solid #000;
+  border-radius: 50px;
+  height: 105%;
+  width: 80%;
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  font-size: 30px;
+  font-family: 'Press Start 2P', cursive;
   background-image: url("photo/forestimage.png");
 
 }

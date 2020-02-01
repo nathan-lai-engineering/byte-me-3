@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Tomorrow&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 
 #donateBtn{
 
 }
-
+body {
+  background-color: #122830;
+}
 /* html, body {
   width:  100%;
   height: 100%;

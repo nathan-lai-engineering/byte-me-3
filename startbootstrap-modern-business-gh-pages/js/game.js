@@ -6,13 +6,25 @@ console.log("yeah game is loaded");
 var gameCanvas = document.getElementById(CANVAS_NAME);
 var donate_btn = document.getElementById(DONATE_BTN);
 var gameCtx = gameCanvas.getContext("2d");
-gameCtx.canvas.width  = window.innerWidth;
-gameCtx.canvas.height = window.innerHeight;
+// gameCtx.canvas.width  = window.innerWidth;
+// gameCtx.canvas.height = window.innerHeight;
+gameCanvas.setAttribute('width', window.innerWidth);
+gameCanvas.setAttribute('height', window.innerHeight);
+
 
 var buttonW = 200;
 var buttonH = 100;
 var buttonX = (gameCanvas.width / 2) - (buttonW/2);
-var buttonY = ((gameCanvas.height / 2) - (buttonH/2)) + 80;
+var buttonY = ((gameCanvas.height / 2) - (buttonH/2)) - 50;
+
+var msgCanvas = document.createElement('msg_canvas');
+var msgX = 70;
+ var msgY = 80;
+ var msgW = 60;
+ var msgH = 30;
+ // var msgCtx = gameCanvas.getContext('2d');
+// msgCtx.fillStyle = 'blue';
+// msgCtx.fillRect(50,50,150,150);
 
 
 var koalaImg = new Image();
@@ -83,9 +95,9 @@ var basket = {
 };
 
 var hearts = {
-  x: 10,
+  x: 50,
   y: 10,
-  dX: 25
+  dX: 30
 };
 
 /**
@@ -107,17 +119,17 @@ function drawHearts() {
   hearts.height = heart1.height;
   var lastX = hearts.x;
   for(i=0; i < lives; i++){
-    gameCtx.drawImage(heart1, lastX + (i*hearts.dX), hearts.y, heart1.width/60, heart1.height/60);
+    gameCtx.drawImage(heart1, lastX + (i*hearts.dX), hearts.y, heart1.width/50, heart1.height/50);
     lastX = lastX + hearts.dX;
   }
   console.log(hearts.x + " and " + hearts.y);
 }
 
 function drawScore(){
-  gameCtx.font = "20px Tomorrow";
+  gameCtx.font = "30px Tomorrow";
   gameCtx.fillStyle = "white";
   var scoreMessage = "Koalas Saved: " + String(koalaSaved);
-  gameCtx.fillText(scoreMessage, gameCanvas.width-300, 35);
+  gameCtx.fillText(scoreMessage, gameCanvas.width - (gameCanvas.width/4), 50);
 }
 
 /**
@@ -137,6 +149,10 @@ function draw() {
 
 function drawDonationBtn(){
   // Render button
+
+   // Render button
+   ctx.fillStyle = 'white';
+   ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
   gameCtx.drawImage(resetImg, buttonX, buttonY, buttonW, buttonH);
 
   // Add event listener to canvas element
