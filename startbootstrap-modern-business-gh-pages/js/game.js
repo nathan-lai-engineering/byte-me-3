@@ -101,9 +101,10 @@ function drawHearts() {
 }
 
 function drawScore(){
-  gameCtx.font = "30px Arial";
+  gameCtx.font = "20px Tomorrow";
   gameCtx.fillStyle = "white";
-  gameCtx.fillText("Koalas Saved: ", gameCanvas.width-250, 35);
+  var scoreMessage = "Koalas Saved: " + String(koalaSaved);
+  gameCtx.fillText(scoreMessage, gameCanvas.width-300, 35);
 }
 
 /**
@@ -111,11 +112,12 @@ function drawScore(){
  */
 function draw() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-
-  drawScore();
-  drawHearts();
-  drawKoala();
-  drawBasket();
+  while(lives > 0){
+    drawScore();
+    drawHearts();
+    drawKoala();
+    drawBasket(); 
+ }
 }
 
 
