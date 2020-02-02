@@ -17,7 +17,7 @@ var buttonH = 100;
 var buttonX = (gameCanvas.width / 2) - (buttonW/2);
 var buttonY = ((gameCanvas.height / 2) - (buttonH/2)) - 50;
 
-var msgCanvas = document.createElement('msg_canvas');
+// var msgCanvas = document.createElement('msg_canvas');
 var msgX = 70;
  var msgY = 80;
  var msgW = 60;
@@ -34,7 +34,7 @@ var resetImg = new Image();
 resetImg.src = "js/assets/reset.png";
 
 var basketImg = new Image();
-basketImg.src = "js/assets/basket.png";
+basketImg.src = "js/assets/newbasket.png";
 
 var heart1 = new Image();
 heart1.src = "js/assets/heart.png";
@@ -104,13 +104,14 @@ var hearts = {
  * Draws basket and moves it with key presses
  */
 function drawBasket() {
+  // basketImg.width = basketImg.width /1.5;
   basket.height = basketImg.height;
   gameCtx.drawImage(basketImg, basket.x, basket.y, basketImg.width / 1.5, basketImg.height /2);
   console.log(basket.x + " " + basket.y);
-  if (rightPressed && basket.x + basketImg.width < gameCanvas.width) {
+  if (rightPressed && basket.x + (basketImg.width / 1.5) <= gameCanvas.width) {
     basket.x += basket.dx;
   }
-  if (leftPressed && basket.x > 0) {
+  if (leftPressed && basket.x >= 0) {
     basket.x -= basket.dx;
   }
 }
@@ -137,12 +138,13 @@ function drawScore(){
  */
 function draw() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+    drawKoala();
     drawScore();
     drawHearts();
-    drawKoala();
     drawBasket();
  if(lives <= 0){
    drawDonationBtn();
+   drawHearts();
    endGame();
  }
 }
@@ -150,10 +152,16 @@ function draw() {
 function drawDonationBtn(){
   // Render button
 
-   // Render button
-   ctx.fillStyle = 'white';
-   ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
+   // // Render button
+   // ctx.fillStyle = 'white';
+   // ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
+   gameCtx.font = "40px Tomorrow";
+   gameCtx.fillStyle = "white";
+   var msg = "Click RESET for another life";
+   gameCtx.fillText(msg, buttonX -40, buttonY );
+
   gameCtx.drawImage(resetImg, buttonX, buttonY, buttonW, buttonH);
+
 
   // Add event listener to canvas element
   gameCanvas.addEventListener('click', function(event) {
@@ -167,7 +175,7 @@ function drawDonationBtn(){
     ) {
       // Executes if button was clicked!
       console.log("clicked");
-      window.open("https://shorturl.at/hnxO6", '_blank');
+      window.open(window.location.href.replace("game.html", "donation.html")); //!!!! opens the donation change in a new tab !!!!
     }
   });
 }
