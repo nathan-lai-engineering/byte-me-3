@@ -17,6 +17,7 @@ var buttonX = gameCanvas.width / 2 - buttonW / 2;
 var buttonY = gameCanvas.height / 2 - buttonH / 2 - 50;
 
 // var msgCanvas = document.createElement('msg_canvas');
+let msgData = new FormData();
 var msgX = 70;
 var msgY = 80;
 var msgW = 60;
@@ -160,7 +161,6 @@ function drawScore() {
   var scoreMessage = "Koalas Saved: " + String(koalaSaved);
   gameCtx.fillText(scoreMessage, gameCanvas.width - gameCanvas.width / 4, 50);
 }
-
 /**
  * Main draw function, draws all the elements in the canvas
  */
@@ -177,17 +177,37 @@ function draw() {
   }
 }
 
+function presentFact() {
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const url = "https://some-random-api.ml/facts/koala"; // site that doesn’t send Access-Control-*
+  fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
+    .then(response => response.formData())
+    .then(form_data => msgData.append("key1", "value1"))
+    .catch(() =>
+      console.log("Can’t access " + url + " response. Blocked by browser?")
+    );
+
+  //factStr = await response.text();
+  //console.log(factStr);
+  //console.log(msgData.values);
+  var values = msgData.values;
+  for (value in values) {
+    console.log(value);
+  }
+  //factStr.push(response);
+}
+
 function drawDonationBtn() {
   // Render button
 
-  // // Render button
   // ctx.fillStyle = 'white';
   // ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
-  gameCtx.font = "40px Tomorrow";
+  gameCtx.font = "20px Tomorrow";
   gameCtx.fillStyle = "white";
-  var msg = "Click RESET for another life";
-  var textWidth = gameCtx.measureText(msg).width;
-  gameCtx.fillText(msg, (gameCanvas.width - textWidth) / 2, buttonY);
+  //var msg = "Click RESET for another life";
+  var msg = randomFact();
+  var msgWidth = gameCtx.measureText(msg).width;
+  gameCtx.fillText(msg, (gameCanvas.width - msgWidth) / 2, buttonY);
 
   gameCtx.drawImage(resetImg, buttonX, buttonY, buttonW, buttonH);
 
@@ -241,3 +261,27 @@ function endGame() {
 
 var drawInterval = setInterval(draw, 10);
 var koalaInterval = setInterval(createBaseKoala, 2000);
+
+var koalaFacts = [];
+koalaFacts.push(
+  "Koalas are nocturnal marsupials famous for spending most of their lives asleep in trees."
+);
+koalaFacts.push(
+  "They live and sleep in the eucalyptus trees. It's hot, light and dry here."
+);
+koalaFacts.push(
+  "A joey grows and develops in the pouch for about six months. Once strong enough, the youngster rides around on its mother’s back."
+);
+koalaFacts.push(
+  "The koalas have white on the underside and gray on the rest of its body."
+);
+koalaFacts.push("Koalas live on the East coast of Australia.");
+koalaFacts.push("Koalas live for 20 or more years.");
+koalaFacts.push("After 1 month the cub is 1 cm. long.");
+koalaFacts.push("Koalas drink milk from the mother.");
+koalaFacts.push("Koalas breed in the summer.");
+koalaFacts.push("Koalas sleep for up to 19 hours.");
+
+function randomFact() {
+  return koalaFacts[Math.floor(Math.random() * 10)];
+}

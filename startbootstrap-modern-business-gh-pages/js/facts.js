@@ -1,22 +1,7 @@
 var facts = [];
-
-// Create a request variable and assign a new XMLHttpRequest object to it.
-var request = new XMLHttpRequest()
-
-// Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://some-random-api.ml/facts/koala', true)
-
-request.onload = function() {
-  // Begin accessing JSON data here
-}
-
-// Send request
-request.send()
-
-// Begin accessing JSON data here
-var data = JSON.parse(this.response)
-
-data.forEach(fact => {
-  // Log each movie's title
-  console.log(fact.fact);
-})
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const url = "https://some-random-api.ml/facts/koala"; // site that doesn’t send Access-Control-*
+fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
+.then(response => response.text())
+.then(contents => console.log(contents))
+.catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
