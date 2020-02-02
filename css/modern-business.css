@@ -164,7 +164,7 @@ button {
   /* opacity: 1; */
 
 .han {
-  background-image: url('photo/han.JPG');
+  background-image: url('photo/han.jpg');
 }
 
 .bioitem1 {
@@ -175,7 +175,7 @@ button {
   /* border-color: green;
    border-width: 20px; */
   /* border-radius: 80%; */
-  background-image: url('photo/han.JPG');
+  background-image: url('photo/han.jpg');
   /* background-image: 50%; */
   background-size: contain;
   align-items: center;
