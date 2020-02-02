@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Tomorrow&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+#donateBtn{
+
+}
+body {
+  background-color: #122830;
+}
+/* html, body {
+  width:  100%;
+  height: 100%;
+  margin: 0;
+} */
+/* button {
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  border-radius: 25px;
+  margin: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.7);
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  border: 1px solid white;
+  text-decoration: none;
+  animation: fadeIn 4s;
+}
+  button:hover {
+  background-color: #487855;
+  border-color: rgba(255, 255, 255, 1);
+  color: white;
+  -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+} */
