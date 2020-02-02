@@ -18,6 +18,7 @@ var buttonX = (gameCanvas.width / 2) - (buttonW/2);
 var buttonY = ((gameCanvas.height / 2) - (buttonH/2)) - 50;
 
 // var msgCanvas = document.createElement('msg_canvas');
+let msgData = new FormData();
 var msgX = 70;
  var msgY = 80;
  var msgW = 60;
@@ -139,6 +140,7 @@ function drawScore(){
 function draw() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
     drawKoala();
+    presentFact();
     drawScore();
     drawHearts();
     drawBasket();
@@ -149,10 +151,23 @@ function draw() {
  }
 }
 
+function presentFact(){
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const url = "https://some-random-api.ml/facts/koala"; // site that doesn’t send Access-Control-*
+  fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
+  .then(response => response.formData())
+  .then(form_data => msgData.append('key1', 'value1');)
+  .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+
+  factStr = await response.text();
+  console.log(factStr);
+
+  factStr.push(response);
+}
+
 function drawDonationBtn(){
   // Render button
 
-   // // Render button
    // ctx.fillStyle = 'white';
    // ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
    gameCtx.font = "40px Tomorrow";
