@@ -92,6 +92,7 @@ function drawKoala() {
     ) {
       koalas.splice(i, 1);
       koalaSaved++;
+      increaseDifficulty();
     } else if (koalas[i].y + koalas[i].dy > gameCanvas.height) {
       koalas.splice(i, 1); //removes koala once it reaches the ground
       lives--;
@@ -257,6 +258,13 @@ function keyUpHandler(e) {
 function endGame() {
   clearInterval(drawInterval);
   clearInterval(koalaInterval);
+}
+
+function increaseDifficulty() {
+  if (2000 - 10 * koalaSaved > 500) {
+    clearInterval(koalaInterval);
+    koalaInterval = setInterval(createBaseKoala, 2000 - 10 * koalaSaved);
+  }
 }
 
 var drawInterval = setInterval(draw, 10);
