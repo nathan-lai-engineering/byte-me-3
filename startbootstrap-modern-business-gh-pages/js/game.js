@@ -1,9 +1,29 @@
 const CANVAS_NAME = "canvas";
+const DONATE_BTN = "donateBtn";
 
 console.log("yeah game is loaded");
 
 var gameCanvas = document.getElementById(CANVAS_NAME);
+var donate_btn = document.getElementById(DONATE_BTN);
 var gameCtx = gameCanvas.getContext("2d");
+// gameCtx.canvas.width  = window.innerWidth;
+// gameCtx.canvas.height = window.innerHeight;
+gameCanvas.setAttribute("width", window.innerWidth);
+gameCanvas.setAttribute("height", window.innerHeight);
+
+var buttonW = 200;
+var buttonH = 100;
+var buttonX = gameCanvas.width / 2 - buttonW / 2;
+var buttonY = gameCanvas.height / 2 - buttonH / 2 - 50;
+
+// var msgCanvas = document.createElement('msg_canvas');
+var msgX = 70;
+var msgY = 80;
+var msgW = 60;
+var msgH = 30;
+// var msgCtx = gameCanvas.getContext('2d');
+// msgCtx.fillStyle = 'blue';
+// msgCtx.fillRect(50,50,150,150);
 
 var koalaImg = new Image();
 koalaImg.src = "js/assets/koala1.png";
@@ -11,8 +31,11 @@ koalaImg.src = "js/assets/koala1.png";
 var koalaImg2 = new Image();
 koalaImg2.src = "js/assets/koala2.png";
 
+var resetImg = new Image();
+resetImg.src = "js/assets/reset.png";
+
 var basketImg = new Image();
-basketImg.src = "js/assets/basket.png";
+basketImg.src = "js/assets/newbasket.png";
 
 var heart1 = new Image();
 heart1.src = "js/assets/heart.png";
@@ -41,7 +64,6 @@ var hearts = {
  * Creates koalas at random places
  */
 function createBaseKoala() {
-  increaseDifficulty();
   koalas[koalas.length] = {
     x: Math.random() * (gameCanvas.width - koalaImg.width),
     y: -koalaImg.height,
@@ -78,15 +100,38 @@ function drawKoala() {
   }
 }
 
+var basket = {
+  height: basketImg.height,
+  width: basketImg.width,
+  x: gameCanvas.width / 5,
+  y: gameCanvas.height - 100,
+  dx: 6
+};
+
+var hearts = {
+  x: 50,
+  y: 10,
+  dX: 30
+};
+
 /**
  * Draws basket and moves it with key presses
  */
 function drawBasket() {
-  gameCtx.drawImage(basketImg, basket.x, basket.y);
-  if (rightPressed && basket.x + basketImg.width < gameCanvas.width) {
+  // basketImg.width = basketImg.width /1.5;
+  basket.height = basketImg.height;
+  gameCtx.drawImage(
+    basketImg,
+    basket.x,
+    basket.y,
+    basketImg.width / 1.5,
+    basketImg.height / 2
+  );
+  console.log(basket.x + " " + basket.y);
+  if (rightPressed && basket.x + basketImg.width / 1.5 <= gameCanvas.width) {
     basket.x += basket.dx;
   }
-  if (leftPressed && basket.x > 0) {
+  if (leftPressed && basket.x >= 0) {
     basket.x -= basket.dx;
   }
 }
@@ -95,25 +140,25 @@ function drawBasket() {
  * Draws hearts
  */
 function drawHearts() {
+  hearts.height = heart1.height;
+  var lastX = hearts.x;
   for (i = 0; i < lives; i++) {
     gameCtx.drawImage(
       heart1,
-      hearts.x + 2 * i * hearts.dX,
+      lastX + i * hearts.dX,
       hearts.y,
-      heart1.width / 60,
-      heart1.height / 60
+      heart1.width / 50,
+      heart1.height / 50
     );
+    lastX = lastX + hearts.dX;
   }
 }
 
-/**
- * Draws score text
- */
 function drawScore() {
-  gameCtx.font = "20px Tomorrow";
+  gameCtx.font = "30px Tomorrow";
   gameCtx.fillStyle = "white";
   var scoreMessage = "Koalas Saved: " + String(koalaSaved);
-  gameCtx.fillText(scoreMessage, gameCanvas.width - 300, 35);
+  gameCtx.fillText(scoreMessage, gameCanvas.width - gameCanvas.width / 4, 50);
 }
 
 /**
@@ -122,22 +167,49 @@ function drawScore() {
 function draw() {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
   drawKoala();
-  drawBasket();
   drawScore();
   drawHearts();
+  drawBasket();
   if (lives <= 0) {
-    gameOver();
+    drawDonationBtn();
+    drawHearts();
+    endGame();
   }
 }
 
-/**
- * !!!!! Increases the spawning rate as you play !!!!!
- */
-function increaseDifficulty() {
-  if (2000 - 15 * koalaSaved > 500) {
-    clearInterval(koalaInterval);
-    koalaInterval = setInterval(createBaseKoala, 2000 - 15 * koalaSaved);
-  }
+function drawDonationBtn() {
+  // Render button
+
+  // // Render button
+  // ctx.fillStyle = 'white';
+  // ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
+  gameCtx.font = "40px Tomorrow";
+  gameCtx.fillStyle = "white";
+  var msg = "Click RESET for another life";
+  var textWidth = gameCtx.measureText(msg).width;
+  gameCtx.fillText(msg, (gameCanvas.width - textWidth) / 2, buttonY);
+
+  gameCtx.drawImage(resetImg, buttonX, buttonY, buttonW, buttonH);
+
+  // Add event listener to canvas element
+  gameCanvas.addEventListener("click", function(event) {
+    // Control that click event occurred within position of button
+    // NOTE: This assumes canvas is positioned at top left corner
+    if (
+      event.x > buttonX &&
+      event.x < buttonX + buttonW &&
+      event.y > buttonY &&
+      event.y < buttonY + buttonH
+    ) {
+      // Executes if button was clicked!
+      console.log("clicked");
+      window.open(window.location.href.replace("game.html", "donation.html")); //!!!! opens the donation change in a new tab !!!!
+    }
+  });
+}
+
+function donateBtnClicked() {
+  lives++;
 }
 
 //Adding event listeners for keys
@@ -162,13 +234,10 @@ function keyUpHandler(e) {
   }
 }
 
-function gameOver() {
+function endGame() {
   clearInterval(drawInterval);
   clearInterval(koalaInterval);
-  gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-  gameCtx.fillStyle = "#000000";
-  gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
-  window.open(window.location.href.replace("game.html", "donation.html")); //!!!! opens the donation change in a new tab !!!!
 }
+
 var drawInterval = setInterval(draw, 10);
 var koalaInterval = setInterval(createBaseKoala, 2000);
