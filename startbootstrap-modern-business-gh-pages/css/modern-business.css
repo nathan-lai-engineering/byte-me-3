@@ -3,24 +3,44 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
+
 * font {
     font-family: 'Tomorrow', sans-serif;
 }
 
+.coverpic {
+  object-fit: cover;
+   width:100%;
+   height: 95%;
+   position: relative /* Declared position allows for location changes */
+   /* top: 0px; */
+}
+
+/* body1 {
+  padding-top: -50px;
+} */
+
+nav {
+  position: absolute;
+  height: 90px;
+}
+
 body {
   padding-top: 56px;
+
   font-family: 'Tomorrow', sans-serif;
 }
 
-.carousel-item {
+.cover {
   height: 65vh;
-  min-height: 300px;
+  /* min-height: px; */
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   font-family: 'Tomorrow', sans-serif;
+  /* padding-bottom: 100px; */
 }
 
 .portfolio-item {
@@ -35,29 +55,342 @@ body {
   justify-content: center;
   margin: 0 auto;
   background-image: url("photo/forestimage.png");
+  font-family: 'Press Start 2P', cursive;
+  /* here is the change on the canvas for the font  */
 
+}
+
+.container {
+  /* position: absolute; */
+  padding-top: -50px;
 }
 
 .container1 {
   padding: 50px 0px 100px 0px;
 }
 
+p1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+p2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 30px;
+}
+
+p4{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 25px;
+}
+
+h2{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 30px;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+
 footer {
-  position: fixed;
-   right: 0;
-   bottom: 0;
-   left: 0;
-   background-image: url("photo/footerpic.jpg")
+  position: absolute;
+   /* right: 0;
+   bottom: -1000px;
+   left: 0; */
+   width: 100%;
+   /* background-image: url("photo/footerpic.jpg") */
+ }
+
+button {
+  color: #494949 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  width: 200px;
+  padding: 20px;
+  border: 4px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+}
+.button-container {
+  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;s
+}
+
+}
+.overlay {
+  position: absolute;
+  /* top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%; */
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+.box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 300px;
+  padding-bottom: 400px;
+  /* width: 400px;
+  height: 250px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat; */
+}
+
+/* .bioitem1:hover, .bioitem2:hover, .bioitem3:hover, .bioitem4:hover > .text {
+  /* opacity: 1; */
+
+.han {
+  background-image: url('photo/han.JPG');
+}
+
+.bioitem1 {
+  color: #292929;
+  height: 250px;
+  width: 250px;
+  padding: 10px;
+  /* border-color: green;
+   border-width: 20px; */
+  /* border-radius: 80%; */
+  background-image: url('photo/han.JPG');
+  /* background-image: 50%; */
+  background-size: contain;
+  align-items: center;
+
+  position:relative;
+
+      display:block;
+      cursor:pointer;
+      overflow:hidden;
+}
+ .bioitem1:hover > .text{
+    display: block;
+    /* background-color: black; */
+}
+
+.bioitem2:hover > .text{
+   display: block;
+   /* background-color: black; */
+}
+.bioitem3:hover > .text{
+   display: block;
+   /* background-color: black; */
+}
+.bioitem4:hover > .text {
+   display: block;
+   /* background-color: black; */
+}
+
+.bioitem2 {
+  color: #292929;
+height: 250px;
+width: 250px;
+padding: 10px;
+/* border-color: black;
+border-width: 2px; */
+/* border-radius: 80%; */
+  background-image: url('photo/nathan.jpg');
+  background-image: 50%;
+  background-size: contain;
+}
+.bioitem3 {
+  color: #292929;
+height: 250px;
+width: 250px;
+padding: 10px;
+/* border-color: black;
+border-width: 2px; */
+/* border-radius: 80%; */
+  background-image: url('photo/githel.png');
+  background-image: 50%;
+  background-size: contain;
+}
+.bioitem4 {
+color: #292929;
+height: 250px;
+width: 250px;
+padding: 10px;
+/* border-color: green;
+border-width: 10px; */
+/* border-radius: 80%; */
+  background-image: url('photo/isabella.jpg');
+  background-image: 50%;
+  background-size: contain;
+}
+
+.text {
+
+   opacity: .75;
+   background-color: black;
+   font-size: 14px;
+   display: flex;
+   display: none;
+   justify-content: space-between;
+   align-items: center; */
+   justify-content: center;
+    text-align: left;
+    color: white;
+    padding: 10px 20px 0px 20px;
+
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    /* border-radius: 50%; */
 
 }
 
+/*
+border-style: solid;{
+
+}
 /* nav-item, nav-link {
     font-family: 'Tomorrow', sans-serif;
 } */
+.origin-container {
+  padding-bottom: 100px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+
+}
 
 .col-lg-4 mb-4{
   display: flex;
-  flex-direction: f;
-
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
 
 }
+
+.row {
+  padding-top: 20px;
+  display: flex;
+  align-content: center;
+}
+
+.row mb-4 {
+  min-height: 100vh; /* will cover the 100% of viewport */
+overflow: hidden;
+display: block;
+position: relative;
+  padding-bottom: 100px;
+}
+/* flame code starts here */
+/* body {
+    margin: 0;
+    padding: 0;
+    background:#ccc;
+}
+.wrapper {
+    width: 100%;
+    min-height: 800px;
+    position: absolute;
+    display: block;
+}
+.red {
+    width: 80px;
+    height: 80px;
+    background: orangered;
+    box-shadow: 0px 0px 10px 5px orangered;
+}
+.orange {
+    left:10px;
+    width: 60px;
+    height: 60px;
+    background: orange;
+    box-shadow: 0px 0px 12px 6px orange;
+}
+.gold {
+    left:18px;
+    width: 45px;
+    height: 45px;
+    background: gold;
+    box-shadow: 0px 0px 9px 4px gold;
+}
+.white {
+    left:22px;
+    width: 35px;
+    height: 35px;
+    background: lightyellow;
+    box-shadow: 0px 0px 9px 4px lightyellow;
+}
+.blue {
+    left:32px;
+    width: 15px;
+    height: 15px;
+    background: darkblue;
+    box-shadow: 0px 0px 15px 10px darkblue;
+}
+.black {
+    left:20px;
+    width: 40px;
+    height: 40px;
+    bottom:-50px;
+    background: black;
+    box-shadow: 0px 0px 15px 10px black;
+}
+.base {
+    border-radius: 50%;
+    position: absolute;
+}
+.flame-wrapper {
+    position: relative;
+    animation: flicker 3ms ease-in infinite;
+}
+.flame {
+    bottom: 0;
+    position: absolute;
+    border-radius: 50% 0% 50% 50%;
+    transform: rotate(-45deg);
+}
+@keyframes flicker {
+    0% {transform: rotate(-1deg);}
+    20% {transform: rotate(2deg) scaleY(1.05);}
+    40% {transform: rotate(-1deg);}
+    60% {transform: rotate(1deg);}
+    80% {transform: rotate(-1deg) scaleY(0.90);}
+    100% {transform: rotate(1deg);}
+}
+
+#flame-overlay {
+  position: absolute;
+
+  left:20%;
+  top:45%;
+}
+
+#flame-overlay2 {
+  position: absolute;
+
+  left:50%;
+  top:35%;
+}
+#flame-overlay3 {
+  position: absolute;
+
+  left:70%;
+  top:30%;
+} */
